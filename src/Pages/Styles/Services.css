@@ -1,0 +1,489 @@
+/* /* ═══════════════════════════════════════════════════════════════
+   ToothEase — Services.css
+   Matches Login.css / Auth tokens: DM Sans · DM Serif Display
+   navy #061529 · teal #00bfa5 · surface #f4f7fb
+═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=DM+Serif+Display:ital@1&display=swap');
+
+/* ── TOKENS ── */
+:root {
+  --ss-navy:       #061529;
+  --ss-navy-mid:   #0d2d5c;
+  --ss-teal:       #00bfa5;
+  --ss-teal-glow:  rgba(0, 191, 165, .18);
+  --ss-blue:       #1e88e5;
+  --ss-surface:    #f4f7fb;
+  --ss-card:       #ffffff;
+  --ss-border:     #e2e8f0;
+  --ss-text-1:     #0f172a;
+  --ss-text-2:     #475569;
+  --ss-text-3:     #94a3b8;
+  --ss-font:       'DM Sans', system-ui, sans-serif;
+  --ss-display:    'DM Serif Display', serif;
+  --ss-radius:     16px;
+  --ss-img-h:      190px;
+  --ss-shadow:     0 2px 16px rgba(13, 27, 62, .07);
+  --ss-shadow-h:   0 14px 44px rgba(13, 27, 62, .14);
+}
+
+/* ── KEYFRAMES ── */
+@keyframes ss-fade-up {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ss-grid-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION ROOT
+═══════════════════════════════════════════════════════════════ */
+.ss-root {
+  font-family: var(--ss-font);
+  background: var(--ss-surface);
+  padding: 88px 24px 72px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════════════════════ */
+.ss-header {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto 48px;
+  animation: ss-fade-up .55s ease both;
+}
+
+.ss-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ss-teal);
+  margin: 0 0 14px;
+}
+
+.ss-title {
+  font-family: var(--ss-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(30px, 4.5vw, 46px);
+  line-height: 1.15;
+  color: var(--ss-text-1);
+  margin: 0 0 16px;
+  letter-spacing: -.5px;
+}
+.ss-title em {
+  color: var(--ss-teal);
+  font-style: italic;
+}
+
+.ss-subtitle {
+  font-size: 15px;
+  color: var(--ss-text-2);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FILTER PILLS
+═══════════════════════════════════════════════════════════════ */
+.ss-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 40px;
+  animation: ss-fade-up .55s .1s ease both;
+}
+
+.ss-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  border: 1.5px solid var(--ss-border);
+  background: #fff;
+  cursor: pointer;
+  font-family: var(--ss-font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ss-text-2);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.ss-filter-pill:hover {
+  border-color: var(--ss-teal);
+  color: var(--ss-teal);
+  background: var(--ss-teal-glow);
+}
+.ss-filter-pill.active {
+  background: var(--ss-navy);
+  border-color: var(--ss-navy);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(6, 21, 41, .22);
+}
+.ss-filter-pill.active .ss-pill-count {
+  background: rgba(255, 255, 255, .18);
+  color: rgba(255, 255, 255, .75);
+}
+
+.ss-pill-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 99px;
+  background: var(--ss-surface);
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--ss-text-3);
+  transition: all .2s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRID
+═══════════════════════════════════════════════════════════════ */
+.ss-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1180px;
+  margin: 0 auto;
+  animation: ss-grid-in .45s .15s ease both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD
+═══════════════════════════════════════════════════════════════ */
+.ss-card {
+  background: var(--ss-card);
+  border-radius: var(--ss-radius);
+  border: 1px solid var(--ss-border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--ss-shadow);
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.ss-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ss-shadow-h);
+  border-color: var(--accent, var(--ss-teal));
+}
+
+/* ── Image / visual area ── */
+.ss-card-visual {
+  position: relative;
+  height: var(--ss-img-h);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e2e8f0;  /* placeholder bg while image loads */
+}
+
+/* Real image */
+.ss-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .38s ease;
+}
+.ss-card:hover .ss-card-img {
+  transform: scale(1.06);
+}
+
+/* Fallback tile (shown if image 404s) */
+.ss-card-img-fallback {
+  width: 100%;
+  height: 100%;
+}
+
+/* Bottom gradient — ensures card name is legible over image */
+.ss-card-img-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(6, 21, 41, .55) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Category badge on image */
+.ss-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.ss-tag--on-image {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 4;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .12);
+}
+
+/* ── Hover overlay with description ── */
+.ss-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(6, 21, 41, .92) 0%,
+    rgba(13, 45, 92, .88) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity .28s ease;
+  z-index: 5;
+}
+.ss-card:hover .ss-card-overlay {
+  opacity: 1;
+}
+
+.ss-card-desc {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, .92);
+  line-height: 1.7;
+  text-align: center;
+  margin: 0;
+  transform: translateY(8px);
+  transition: transform .28s ease;
+}
+.ss-card:hover .ss-card-desc {
+  transform: translateY(0);
+}
+
+/* Teal accent line at top of overlay */
+.ss-card-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent, var(--ss-teal));
+  border-radius: 0;
+}
+
+/* ── Card body ── */
+.ss-card-body {
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.ss-card-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ss-text-1);
+  margin: 0;
+  letter-spacing: -.2px;
+  line-height: 1.3;
+}
+
+/* ── Book button (now a Link) ── */
+.ss-book-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--ss-navy);
+  color: #fff;
+  font-family: var(--ss-font);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;            /* Link reset */
+  transition: background .2s, transform .15s, box-shadow .2s;
+  margin-top: auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+/* Teal shimmer on hover */
+.ss-book-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 0%, rgba(0, 191, 165, .22) 100%);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.ss-book-btn:hover {
+  background: color-mix(in srgb, var(--accent, var(--ss-teal)) 100%, #000);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px color-mix(in srgb, var(--accent, var(--ss-teal)) 35%, transparent);
+  color: #fff;
+  text-decoration: none;
+}
+.ss-book-btn:hover::after {
+  opacity: 1;
+}
+.ss-book-btn:active {
+  transform: translateY(0);
+}
+.ss-book-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.ss-btn-arrow {
+  font-size: 15px;
+  transition: transform .2s;
+}
+.ss-book-btn:hover .ss-btn-arrow {
+  transform: translateX(3px);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BOTTOM CTA
+═══════════════════════════════════════════════════════════════ */
+.ss-footer-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--ss-border);
+  text-align: center;
+}
+.ss-footer-cta p {
+  font-size: 16px;
+  color: var(--ss-text-2);
+  font-weight: 600;
+  margin: 0;
+}
+
+.ss-consult-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 13px;
+  border: none;
+  background: linear-gradient(120deg, var(--ss-navy) 0%, var(--ss-navy-mid) 100%);
+  color: #fff;
+  font-family: var(--ss-font);
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;             /* Link reset */
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 6px 26px rgba(6, 21, 41, .22);
+  position: relative;
+  overflow: hidden;
+}
+.ss-consult-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(0, 191, 165, .22) 100%);
+  opacity: 0;
+  transition: opacity .2s;
+}
+.ss-consult-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 38px rgba(6, 21, 41, .28);
+  color: #fff;
+  text-decoration: none;
+}
+.ss-consult-btn:hover::after {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .ss-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .ss-root {
+    padding: 64px 16px 56px;
+  }
+  .ss-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  :root {
+    --ss-img-h: 170px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ss-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .ss-header {
+    margin-bottom: 32px;
+  }
+  .ss-filters {
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+  .ss-filter-pill {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+  :root {
+    --ss-img-h: 140px;
+  }
+  .ss-card-body {
+    padding: 12px 12px 14px;
+    gap: 10px;
+  }
+  .ss-card-name {
+    font-size: 13px;
+  }
+  .ss-book-btn {
+    font-size: 12px;
+    padding: 9px 12px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ss-card,
+  .ss-card-img,
+  .ss-card-overlay,
+  .ss-card-desc,
+  .ss-book-btn,
+  .ss-consult-btn {
+    transition: none;
+    animation: none;
+  }
+  .ss-root,
+  .ss-header,
+  .ss-filters,
+  .ss-grid {
+    animation: none;
+  }
+}

@@ -1,0 +1,27 @@
+/* ── Admin Panel CSS ─────────────────────────────────────────────── */
+.admin-two-col { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.admin-quick-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.admin-quick-btn {
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  padding:14px 8px; border-radius:12px; border:2px solid var(--border);
+  cursor:pointer; transition:all .16s; text-align:center;
+}
+.admin-quick-btn:hover { transform:translateY(-2px); box-shadow:var(--shadow-sm); }
+.admin-filter-bar { display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+.filter-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+.filter-tab {
+  display:flex; align-items:center; gap:5px;
+  padding:7px 14px; border-radius:8px; border:1.5px solid var(--border);
+  font-size:13px; font-weight:600; cursor:pointer; transition:all .14s;
+  background:#fff; color:var(--muted);
+}
+.filter-tab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+.filter-tab:hover:not(.active) { background:var(--bg); }
+.filter-count { background:var(--bg); color:var(--muted); border-radius:99px; padding:1px 7px; font-size:11px; }
+.filter-tab.active .filter-count { background:rgba(255,255,255,.2); color:#fff; }
+.admin-doctors-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
+.doctor-card { background:var(--card); border-radius:var(--r-lg); padding:20px; box-shadow:var(--shadow-sm); transition:box-shadow .18s,transform .18s; }
+.doctor-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+
+@media (max-width:900px) { .admin-two-col { grid-template-columns:1fr; } }
+@media (max-width:500px) { .admin-quick-grid { grid-template-columns:repeat(2,1fr); } }

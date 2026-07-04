@@ -1,0 +1,893 @@
+/* ═══════════════════════════════════════════════════════════════
+   ToothEase — Login.css
+   Covers every class used in Login.jsx:
+   lv-root · lv-page · lv-left · lv-right · lv-card · lv-brand
+   lv-hero · lv-features · lv-legend · lv-stat · lv-field
+   lv-input · lv-submit · lv-spinner · lv-toast · lv-pw-wrap
+   lv-strength · lv-hints · lv-av · and all modifier variants
+═══════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=DM+Serif+Display:ital@1&display=swap');
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --navy-900: #030e1f;
+  --navy-800: #061529;
+  --navy-700: #0a2040;
+  --navy-600: #0d2d5c;
+  --navy-500: #163a70;
+  --teal:     #00bfa5;
+  --teal-dim: rgba(0, 191, 165, .18);
+  --teal-glow:rgba(0, 191, 165, .35);
+  --blue:     #1e88e5;
+  --blue-dim: rgba(30, 136, 229, .14);
+  --red:      #ef4444;
+  --amber:    #f59e0b;
+  --green:    #16a34a;
+
+  --surface:  #f4f7fb;
+  --card-bg:  #ffffff;
+  --border:   #e2e8f0;
+  --border-md:#cbd5e1;
+  --text-1:   #0f172a;
+  --text-2:   #475569;
+  --text-3:   #94a3b8;
+  --text-4:   #c0ccd8;
+
+  --radius-sm:  8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --font: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'DM Serif Display', serif;
+
+  --shadow-card: 0 4px 32px rgba(13, 27, 62, .08);
+  --shadow-btn:  0 6px 24px rgba(13, 27, 62, .22);
+  --shadow-btn-h:0 10px 36px rgba(13, 27, 62, .30);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   KEYFRAMES
+════════════════════════════════════════════════════════════════ */
+@keyframes spin      { to { transform: rotate(360deg); } }
+@keyframes fadeUp    { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn   { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes toastIn   { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes blobFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(12px,-16px) scale(1.06); } }
+
+/* ════════════════════════════════════════════════════════════════
+   ROOT SHELL
+════════════════════════════════════════════════════════════════ */
+.lv-root {
+  font-family: var(--font);
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PAGE LAYOUT  —  lv-page (split) · lv-page--centered (forgot/reset)
+════════════════════════════════════════════════════════════════ */
+.lv-page {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  animation: fadeIn .38s ease both;
+}
+
+.lv-page--centered {
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  padding: 32px 16px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LEFT PANEL
+════════════════════════════════════════════════════════════════ */
+.lv-left {
+  width: 400px;
+  flex-shrink: 0;
+  background: linear-gradient(175deg, var(--navy-900) 0%, var(--navy-800) 40%, var(--navy-700) 70%, var(--navy-600) 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 36px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative blobs */
+.lv-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.lv-blob-1 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(0, 191, 165, .14) 0%, transparent 68%);
+  top: -80px;
+  right: -100px;
+  animation: blobFloat 9s ease-in-out infinite;
+}
+.lv-blob-2 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(38, 198, 218, .10) 0%, transparent 68%);
+  bottom: 60px;
+  left: -60px;
+  animation: blobFloat 12s ease-in-out infinite reverse;
+}
+
+/* ── Brand lockup ── */
+.lv-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 52px;
+  position: relative;
+  z-index: 2;
+  animation: slideIn .45s .05s ease both;
+}
+.lv-brand-orb {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--teal), #26c6da);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px var(--teal-glow);
+}
+.lv-brand-name {
+  font-weight: 800;
+  font-size: 19px;
+  color: #fff;
+  letter-spacing: -.4px;
+  line-height: 1;
+}
+.lv-brand-sub {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .35);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* ── Hero copy ── */
+.lv-hero {
+  position: relative;
+  z-index: 2;
+  animation: slideIn .45s .12s ease both;
+}
+.lv-hero h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.12;
+  color: #fff;
+  margin: 0 0 18px;
+  letter-spacing: -.5px;
+}
+.lv-hero h1 em {
+  color: var(--teal);
+}
+.lv-hero p {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, .45);
+  line-height: 1.75;
+  max-width: 300px;
+  margin: 0;
+}
+
+/* ── Feature list ── */
+.lv-features {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  animation: slideIn .45s .20s ease both;
+}
+.lv-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, .5);
+  line-height: 1.55;
+}
+.lv-feat-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Role legend ── */
+.lv-legend {
+  margin-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  padding-top: 20px;
+  position: relative;
+  z-index: 2;
+  animation: slideIn .45s .28s ease both;
+}
+.lv-legend-title {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .28);
+  margin-bottom: 13px;
+}
+.lv-legend-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 11px;
+}
+.lv-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.lv-legend-row strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, .75);
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.lv-legend-row span {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, .35);
+  line-height: 1.4;
+}
+
+/* ── Stats bar ── */
+.lv-left-stats {
+  display: flex;
+  gap: 0;
+  margin-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  padding-top: 18px;
+  position: relative;
+  z-index: 2;
+  animation: slideIn .45s .34s ease both;
+}
+.lv-stat {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, .08);
+}
+.lv-stat:last-child {
+  border-right: none;
+}
+.lv-stat strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.3px;
+}
+.lv-stat span {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, .35);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* ── Footer ── */
+.lv-left-foot {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, .2);
+  margin-top: 18px;
+  position: relative;
+  z-index: 2;
+  letter-spacing: .2px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RIGHT PANEL
+════════════════════════════════════════════════════════════════ */
+.lv-right {
+  flex: 1;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+  overflow-y: auto;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   CARD  (main · narrow for forgot/reset)
+════════════════════════════════════════════════════════════════ */
+.lv-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  padding: 42px 38px;
+  width: 100%;
+  max-width: 430px;
+  box-shadow: var(--shadow-card);
+  animation: fadeUp .42s .06s ease both;
+}
+.lv-card--narrow {
+  max-width: 400px;
+  padding: 36px 34px;
+}
+
+/* ── Card header ── */
+.lv-card-head {
+  margin-bottom: 26px;
+}
+.lv-card-title {
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--text-1);
+  margin: 0 0 7px;
+  letter-spacing: -.5px;
+  line-height: 1.15;
+}
+.lv-card-sub {
+  font-size: 13.5px;
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Back button (forgot/reset) ── */
+.lv-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+  padding: 0;
+  margin-bottom: 24px;
+  transition: color .18s;
+}
+.lv-back:hover {
+  color: var(--blue);
+}
+
+/* ── Icon orb (forgot/reset) ── */
+.lv-icon-orb {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #e0f7f4, #dbeafe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin: 0 auto 20px;
+  border: 1px solid rgba(0, 191, 165, .2);
+}
+
+/* ── Success orb ── */
+.lv-success-orb {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0 auto;
+  border: 2px solid rgba(22, 163, 74, .25);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DEMO PILLS  (commented out in Login.jsx — styles ready when enabled)
+════════════════════════════════════════════════════════════════ */
+.lv-demos {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.lv-demos-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 10px;
+}
+.lv-demos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.lv-demo-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #fff;
+  border: 1.5px solid rgba(0, 0, 0, .08);
+  border-radius: var(--radius-sm);
+  padding: 7px 11px;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: border-color .18s, box-shadow .18s, transform .12s;
+}
+.lv-demo-pill:hover {
+  border-color: var(--pc, var(--blue));
+  transform: translateY(-1px);
+}
+.lv-demo-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pc, var(--text-1));
+}
+.lv-demo-email {
+  font-size: 10.5px;
+  color: var(--text-3);
+  margin-top: 1px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   DIVIDER
+════════════════════════════════════════════════════════════════ */
+.lv-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0 20px;
+  color: var(--text-4);
+  font-size: 12px;
+  font-weight: 700;
+}
+.lv-divider::before,
+.lv-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FORM
+════════════════════════════════════════════════════════════════ */
+.lv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Field wrapper ── */
+.lv-field {
+  margin-bottom: 18px;
+}
+
+/* ── Label row ── */
+.lv-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 7px;
+  flex-wrap: wrap;
+}
+
+/* Live role chip (shown inside label when email is recognised) */
+.lv-role-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  animation: fadeIn .22s ease;
+}
+
+/* ── Text input ── */
+.lv-input {
+  display: block;
+  width: 100%;
+  height: 47px;
+  background: #f8fafc;
+  border: 1.5px solid var(--border);
+  border-radius: 11px;
+  padding: 0 15px;
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text-1);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .18s, background .18s, box-shadow .18s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.lv-input:hover {
+  border-color: var(--border-md);
+  background: #fff;
+}
+.lv-input:focus {
+  border-color: var(--teal);
+  background: #fff;
+  box-shadow: 0 0 0 3.5px rgba(0, 191, 165, .13);
+}
+.lv-input::placeholder {
+  color: var(--text-4);
+}
+
+/* Error state */
+.lv-input--err {
+  border-color: #f87171 !important;
+  background: #fffafa;
+}
+.lv-input--err:focus {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, .12) !important;
+}
+
+/* ── Password field wrapper ── */
+.lv-pw-wrap {
+  position: relative;
+}
+.lv-pw-wrap .lv-input {
+  padding-right: 46px;
+}
+.lv-pw-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-3);
+  padding: 4px;
+  line-height: 1;
+  transition: color .18s;
+}
+.lv-pw-eye:hover {
+  color: var(--text-2);
+}
+
+/* ── Inline validation message ── */
+.lv-err {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--red);
+  margin: 6px 0 0;
+  animation: fadeUp .18s ease;
+}
+.lv-err span:first-child {
+  font-size: 13px;
+}
+
+/* ── Forgot password (in label row) ── */
+.lv-forgot-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue);
+  padding: 0;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: color .18s;
+}
+.lv-forgot-link:hover {
+  color: #1565c0;
+}
+
+/* ── Remember me ── */
+.lv-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: var(--text-2);
+  font-weight: 600;
+  margin-bottom: 22px;
+  user-select: none;
+}
+.lv-remember input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--teal);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   SUBMIT BUTTON
+   — default: deep navy gradient
+   — role-adaptive: style="" override applied by Login.jsx
+════════════════════════════════════════════════════════════════ */
+.lv-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(120deg, var(--navy-800) 0%, var(--navy-600) 100%);
+  color: #fff;
+  font-family: var(--font);
+  font-size: 15.5px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: -.15px;
+  transition: transform .18s, box-shadow .18s, opacity .18s;
+  box-shadow: var(--shadow-btn);
+  position: relative;
+  overflow: hidden;
+}
+/* Teal shimmer accent */
+.lv-submit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(0, 191, 165, .18) 100%);
+  opacity: 0;
+  transition: opacity .22s;
+}
+.lv-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-btn-h);
+}
+.lv-submit:hover::after {
+  opacity: 1;
+}
+.lv-submit:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-btn);
+}
+.lv-submit:disabled,
+.lv-submit.loading {
+  opacity: .80;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Spinner inside button ── */
+.lv-spinner {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border: 2.5px solid rgba(255, 255, 255, .25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin .72s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PASSWORD STRENGTH METER
+════════════════════════════════════════════════════════════════ */
+.lv-strength {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.lv-strength-bars {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.lv-strength-seg {
+  flex: 1;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  transition: background .28s ease;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PASSWORD HINTS  (reset password view)
+════════════════════════════════════════════════════════════════ */
+.lv-hints {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 12px;
+  margin: 4px 0 18px;
+}
+.lv-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  transition: color .2s;
+}
+.lv-hint span {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.lv-hint--met {
+  color: var(--green);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   FOOTER / REGISTER LINK
+════════════════════════════════════════════════════════════════ */
+.lv-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 22px;
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+.lv-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--blue);
+  padding: 0;
+  text-decoration: none;
+  transition: color .18s;
+}
+.lv-link-btn:hover {
+  color: #1565c0;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   AVATAR  (lv-av — sized by inline style in Av component)
+════════════════════════════════════════════════════════════════ */
+.lv-av {
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-family: var(--font);
+  letter-spacing: -.5px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   TOAST NOTIFICATION
+════════════════════════════════════════════════════════════════ */
+.lv-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: #fff;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  max-width: 340px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .22);
+  animation: toastIn .28s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+.lv-toast--success { background: #16a34a; }
+.lv-toast--error   { background: var(--red); }
+.lv-toast--info    { background: var(--blue); }
+.lv-toast button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, .7);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 0 0 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: color .15s;
+}
+.lv-toast button:hover {
+  color: #fff;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .lv-left {
+    width: 300px;
+    padding: 32px 26px;
+  }
+  .lv-hero h1 {
+    font-size: 38px;
+  }
+  .lv-card {
+    padding: 34px 28px;
+  }
+}
+
+@media (max-width: 700px) {
+  .lv-page {
+    flex-direction: column;
+  }
+  .lv-left {
+    width: 100%;
+    padding: 28px 24px 30px;
+    min-height: auto;
+  }
+  .lv-blob {
+    display: none;
+  }
+  .lv-hero h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  .lv-hero p {
+    font-size: 13px;
+  }
+  /* Hide decorative-only sections to keep the sidebar slim on mobile */
+  .lv-features,
+  .lv-legend,
+  .lv-left-stats,
+  .lv-left-foot {
+    display: none;
+  }
+  .lv-brand {
+    margin-bottom: 24px;
+  }
+  .lv-right {
+    padding: 28px 16px 40px;
+    align-items: flex-start;
+  }
+  .lv-card {
+    padding: 28px 22px;
+    border-radius: var(--radius-lg);
+  }
+  .lv-demos-grid {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  .lv-hints {
+    grid-template-columns: 1fr;
+  }
+}
